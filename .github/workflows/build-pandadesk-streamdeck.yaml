@@ -2,11 +2,12 @@ name: PandaDesk build and release
 
 on:
   push:
-    branches: ['**']
+    branches: [main]
     paths:
       - 'pandadesk/**'
       - '.github/workflows/build-pandadesk-streamdeck.yaml'
   pull_request:
+    branches: [main]
     paths:
       - 'pandadesk/**'
       - '.github/workflows/build-pandadesk-streamdeck.yaml'
@@ -17,6 +18,7 @@ permissions:
 
 jobs:
   build:
+    if: github.event_name != 'workflow_dispatch' || github.ref == 'refs/heads/main'
     runs-on: windows-latest
     defaults:
       run:
