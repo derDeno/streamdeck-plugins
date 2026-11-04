@@ -27,16 +27,12 @@ discovery, and Stream Deck dial actions are not supported.
 
 ## Installation
 
-Search for **PandaDesk** in the **Elgato Marketplace** and install it through
-Stream Deck. The direct Marketplace link will be added here later.
-
-<!-- Add the PandaDesk Elgato Marketplace listing URL here when available. -->
-
-To install a package produced by a [local build](#local-development):
-
-1. Double-click `de.pandaboards.pandadesk.streamDeckPlugin` and follow the Stream
+1. Open [GitHub Releases](https://github.com/derDeno/streamdeck-plugins/releases)
+   and find the newest **PandaDesk** release. Under **Assets**, download
+   `de.pandaboards.pandadesk.streamDeckPlugin`.
+2. Double-click the downloaded file and follow the Stream
    Deck installation prompt.
-2. Find **PandaDesk** in Stream Deck's action list and drag the desired actions
+3. Find **PandaDesk** in Stream Deck's action list and drag the desired actions
    onto your keys.
 
 To update, install the newer package using the same procedure.
@@ -139,22 +135,6 @@ their target unless stopped.
 When upgrading from the initial per-key-address version, the first valid address
 on a visible legacy key is adopted if no shared address exists. A saved shared
 address takes precedence over legacy settings.
-
-## GitHub Actions builds
-
-The build workflow is `build-pandadesk-streamdeck.yaml`.
-It runs for pushes and pull requests affecting this plugin or the workflow, and
-can also be started manually with **Run workflow**.
-
-Each build uses a Windows runner and Node.js 24 to:
-
-1. Install the locked dependencies with `npm ci`.
-2. Compile TypeScript and run the automated tests with `npm test`.
-3. Build, validate with Elgato's CLI, and package the installer with `npm run pack`.
-4. Upload `de.pandaboards.pandadesk.streamDeckPlugin` as a downloadable artifact.
-
-Artifacts are retained for 30 days. The workflow requires no project secrets and
-does not publish to the Elgato Marketplace or create GitHub releases.
 
 ## Local development
 
