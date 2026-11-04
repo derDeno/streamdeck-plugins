@@ -1,0 +1,5 @@
+node_modules/
+dist/
+de.pandaboards.pandadesk.sdPlugin/bin/
+de.pandaboards.pandadesk.sdPlugin/logs/
+de.pandaboards.pandadesk.sdPlugin/ui/i18n.js
