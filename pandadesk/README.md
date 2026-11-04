@@ -142,9 +142,11 @@ address takes precedence over legacy settings.
 
 ## GitHub Actions builds
 
-The build workflow is `build-pandadesk-streamdeck.yaml`.
-It runs for pushes and pull requests affecting this plugin or the workflow, and
-can also be started manually with **Run workflow**.
+The build workflow is
+[`build-pandadesk-streamdeck.yaml`](../.github/workflows/build-pandadesk-streamdeck.yaml).
+It runs for pushes and pull requests affecting `pandadesk/` or that workflow,
+and can also be started manually with **Run workflow**. Changes to other plugin
+folders do not trigger this build.
 
 Each build uses a Windows runner and Node.js 24 to:
 
@@ -153,8 +155,14 @@ Each build uses a Windows runner and Node.js 24 to:
 3. Build, validate with Elgato's CLI, and package the installer with `npm run pack`.
 4. Upload `de.pandaboards.pandadesk.streamDeckPlugin` as a downloadable artifact.
 
-Artifacts are retained for 30 days. The workflow requires no project secrets and
-does not publish to the Elgato Marketplace or create GitHub releases.
+Artifacts are retained for 30 days. Successful pushes to `main`, and manual runs
+on `main`, also attach the installer to a GitHub release named from the manifest,
+for example **PandaDesk v1.1.1.0**, with tag `pandadesk/v1.1.1.0`.
+Existing releases are preserved; bump the manifest's `Version` for a new release
+and keep `package.json` and `package-lock.json` versions aligned (`1.1.1` in npm
+metadata corresponds to `1.1.1.0` in the manifest).
+Pull requests and other branches only produce build artifacts. The workflow
+requires no project secrets and does not publish to the Elgato Marketplace.
 
 ## Local development
 
