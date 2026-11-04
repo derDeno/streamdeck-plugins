@@ -1,7 +1,7 @@
 # PandaDesk Stream Deck Plugin
 
 PandaDesk Stream Deck is a production-ready Windows plugin for controlling your
-height-adjustable desk directly through PandaDesk. Version **1.1.1** supports
+height-adjustable desk directly through [PandaDesk](https://github.com/derDeno/PandaDesk). Version **1.1.1** supports
 everyday desk control, live feedback, sitting/standing positions, and controller
 child lock. It has been tested with real PandaDesk hardware.
 
