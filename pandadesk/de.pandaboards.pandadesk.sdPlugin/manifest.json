@@ -1,0 +1,152 @@
+{
+  "$schema": "https://schemas.elgato.com/streamdeck/plugins/manifest.json",
+  "UUID": "de.pandaboards.pandadesk",
+  "Name": "PandaDesk",
+  "Author": "PandaBoards",
+  "Description": "Control PandaDesk directly over your local network. No Home Assistant or MQTT required.",
+  "Version": "1.1.1.0",
+  "SDKVersion": 3,
+  "Software": {
+    "MinimumVersion": "7.1"
+  },
+  "OS": [
+    {
+      "Platform": "windows",
+      "MinimumVersion": "10"
+    }
+  ],
+  "Nodejs": {
+    "Version": "24"
+  },
+  "CodePath": "bin/plugin.js",
+  "Icon": "imgs/pandadesk-official",
+  "Category": "PandaDesk",
+  "CategoryIcon": "imgs/category",
+  "PropertyInspectorPath": "ui/settings.html",
+  "Actions": [
+    {
+      "UUID": "de.pandaboards.pandadesk.up",
+      "Name": "Up · hold",
+      "Tooltip": "Hold to move up. Release to stop.",
+      "Icon": "imgs/up",
+      "Controllers": [
+        "Keypad"
+      ],
+      "SupportedInMultiActions": false,
+      "States": [
+        {
+          "Image": "imgs/up",
+          "Title": "Up",
+          "TitleAlignment": "bottom",
+          "FontSize": 12
+        }
+      ]
+    },
+    {
+      "UUID": "de.pandaboards.pandadesk.down",
+      "Name": "Down · hold",
+      "Tooltip": "Hold to move down. Release to stop.",
+      "Icon": "imgs/down",
+      "Controllers": [
+        "Keypad"
+      ],
+      "SupportedInMultiActions": false,
+      "States": [
+        {
+          "Image": "imgs/down",
+          "Title": "Down",
+          "TitleAlignment": "bottom",
+          "FontSize": 12
+        }
+      ]
+    },
+    {
+      "UUID": "de.pandaboards.pandadesk.stop",
+      "Name": "Stop",
+      "Tooltip": "Stop movement and cancel held-key commands.",
+      "Icon": "imgs/stop",
+      "Controllers": [
+        "Keypad"
+      ],
+      "States": [
+        {
+          "Image": "imgs/stop",
+          "Title": "Stop",
+          "TitleAlignment": "bottom",
+          "FontSize": 12
+        }
+      ]
+    },
+    {
+      "UUID": "de.pandaboards.pandadesk.height",
+      "Name": "Target height · Sit / Stand",
+      "Tooltip": "Move to the configured height if supported by the desk profile.",
+      "Icon": "imgs/height",
+      "Controllers": [
+        "Keypad"
+      ],
+      "States": [
+        {
+          "Image": "imgs/height",
+          "Title": "Target height",
+          "TitleAlignment": "bottom",
+          "FontSize": 12
+        }
+      ]
+    },
+    {
+      "UUID": "de.pandaboards.pandadesk.preset",
+      "Name": "Preset · Recall",
+      "Tooltip": "Press to recall a saved desk position 1–4.",
+      "Icon": "imgs/preset",
+      "Controllers": [
+        "Keypad"
+      ],
+      "SupportedInMultiActions": false,
+      "States": [
+        {
+          "Image": "imgs/preset",
+          "Title": "Preset",
+          "TitleAlignment": "bottom",
+          "FontSize": 12
+        }
+      ]
+    },
+    {
+      "UUID": "de.pandaboards.pandadesk.childlock",
+      "Name": "Child lock",
+      "Tooltip": "Lock, unlock, or toggle the child lock. The icon shows its confirmed state.",
+      "Icon": "imgs/locked",
+      "Controllers": [
+        "Keypad"
+      ],
+      "SupportedInMultiActions": false,
+      "States": [
+        {
+          "Image": "imgs/lock-unknown",
+          "Title": "Child lock",
+          "TitleAlignment": "bottom",
+          "FontSize": 10
+        }
+      ]
+    },
+    {
+      "UUID": "de.pandaboards.pandadesk.status",
+      "Name": "Height & status",
+      "Tooltip": "Display the current height. Press to refresh.",
+      "Icon": "imgs/status",
+      "Controllers": [
+        "Keypad"
+      ],
+      "SupportedInMultiActions": false,
+      "States": [
+        {
+          "Image": "imgs/status",
+          "Title": "Height",
+          "TitleAlignment": "bottom",
+          "FontSize": 12
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PandaDesk</title>
+  <style>
+    :root { color-scheme: dark; font: 12px system-ui, sans-serif; color: #ddd; background: #2d2d2d; }
+    body { margin: 16px; }
+    h1 { font-size: 15px; margin: 0 0 16px; }
+    label { display: block; font-weight: 600; margin: 14px 0 6px; }
+    input, select { box-sizing: border-box; width: 100%; padding: 8px; border: 1px solid #666; border-radius: 4px; background: #3b3b3b; color: #fff; }
+    input:disabled, select:disabled { opacity: .5; }
+    input:focus { outline: 2px solid #8ecfbb; outline-offset: 1px; }
+    p { line-height: 1.5; color: #bbb; }
+    button { padding: 8px 12px; border: 1px solid #777; border-radius: 4px; background: #454545; color: #fff; cursor: pointer; }
+    #feedback { min-height: 18px; color: #8ecfbb; }
+    #feedback.error { color: #ffbdad; }
+    [hidden] { display: none; }
+  </style>
+  <script defer src="i18n.js"></script>
+  <script defer src="settings.js"></script>
+</head>
+<body>
+  <h1>PandaDesk</h1>
+  <form id="settings">
+    <label id="board-label" for="board">Board address</label>
+    <input id="board" name="board" type="text" required placeholder="http://pandadesk.local" autocomplete="off" spellcheck="false">
+    <div id="height-field" hidden>
+      <label id="height-label" for="height">Target height in cm</label>
+      <input id="height" name="height" type="text" inputmode="decimal" placeholder="72.0" autocomplete="off" disabled aria-describedby="height-range function-status">
+      <p id="height-range" role="status" aria-live="polite"></p>
+    </div>
+    <div id="lock-field" hidden>
+      <label id="lock-label" for="lock-mode">Child lock</label>
+      <select id="lock-mode" name="lockMode" aria-describedby="function-status">
+        <option id="mode-toggle" value="toggle">Toggle</option>
+        <option id="mode-lock" value="lock">Lock</option>
+        <option id="mode-unlock" value="unlock">Unlock</option>
+      </select>
+    </div>
+    <div id="preset-field" hidden>
+      <label id="preset-label" for="preset">Preset</label>
+      <select id="preset" name="preset" aria-describedby="function-status">
+        <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option>
+      </select>
+    </div>
+    <p id="function-status" role="status" aria-live="polite"></p>
+    <p id="hint"></p>
+    <button id="save" type="submit">Save</button>
+    <p id="feedback" role="status" aria-live="polite"></p>
+  </form>
+  <p id="footer">The height display updates automatically. Leave Stream Deck's title field empty for dynamic values.</p>
+</body>
+</html>

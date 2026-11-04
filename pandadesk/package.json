@@ -1,0 +1,24 @@
+{
+  "name": "pandadesk-streamdeck",
+  "version": "1.1.1",
+  "private": true,
+  "type": "module",
+  "description": "Control PandaDesk from Elgato Stream Deck over the local network",
+  "scripts": {
+    "build": "tsc --noEmit && node scripts/build.mjs",
+    "test": "npm run build && node --test tests/*.test.mjs",
+    "validate": "streamdeck validate de.pandaboards.pandadesk.sdPlugin",
+    "pack": "npm run build && streamdeck pack de.pandaboards.pandadesk.sdPlugin --output dist --force",
+    "mock": "node scripts/mock-board.mjs"
+  },
+  "engines": {
+    "node": ">=24"
+  },
+  "devDependencies": {
+    "@elgato/cli": "1.10.4",
+    "@types/node": "^24.0.0",
+    "esbuild": "0.28.2",
+    "typescript": "~5.9.3",
+    "ws": "^8.18.3"
+  }
+}
