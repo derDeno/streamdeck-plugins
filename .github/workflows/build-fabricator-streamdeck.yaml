@@ -1,0 +1,101 @@
+name: Fabricator build and release
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'fabricator/**'
+      - '.github/workflows/build-fabricator-streamdeck.yaml'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'fabricator/**'
+      - '.github/workflows/build-fabricator-streamdeck.yaml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    if: github.event_name != 'workflow_dispatch' || github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+        working-directory: fabricator
+    outputs:
+      name: ${{ steps.plugin.outputs.name }}
+      version: ${{ steps.plugin.outputs.version }}
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: fabricator/package-lock.json
+
+      - name: Read plugin name and version
+        id: plugin
+        run: |
+          node --input-type=module <<'NODE'
+          import assert from 'node:assert/strict';
+          import { appendFileSync, readFileSync } from 'node:fs';
+
+          const { Name, Version } = JSON.parse(readFileSync('de.derdeno.fabricator.sdPlugin/manifest.json', 'utf8'));
+          assert(typeof Name === 'string' && Name.trim() && !/[\r\n]/.test(Name), 'Invalid plugin name');
+          assert(typeof Version === 'string' && /^\d+\.\d+\.\d+\.\d+$/.test(Version), 'Invalid plugin version');
+          appendFileSync(process.env.GITHUB_OUTPUT, `name=${Name}\nversion=${Version}\n`, 'utf8');
+          NODE
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Test plugin
+        run: npm test
+
+      - name: Validate and package
+        run: npm run pack -- --no-update-check
+
+      - name: Upload installer
+        uses: actions/upload-artifact@v7
+        with:
+          name: fabricator-${{ steps.plugin.outputs.version }}
+          path: fabricator/dist/*.streamDeckPlugin
+          if-no-files-found: error
+          retention-days: 30
+
+  release:
+    needs: build
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    concurrency:
+      group: fabricator-release
+      cancel-in-progress: false
+    steps:
+      - uses: actions/download-artifact@v8
+        with:
+          name: fabricator-${{ needs.build.outputs.version }}
+          path: dist
+
+      - name: Publish plugin release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          PLUGIN_NAME: ${{ needs.build.outputs.name }}
+          PLUGIN_VERSION: ${{ needs.build.outputs.version }}
+        run: |
+          tag="fabricator/v${PLUGIN_VERSION}"
+          if gh release view "$tag" --json tagName > /dev/null 2>&1; then
+            echo "Release $tag already exists; bump the manifest Version to publish a new release."
+            exit 0
+          fi
+          gh release create "$tag" dist/*.streamDeckPlugin \
+            --target "$GITHUB_SHA" \
+            --title "${PLUGIN_NAME} v${PLUGIN_VERSION}" \
+            --notes "Install the attached .streamDeckPlugin file using Elgato Stream Deck. Built from commit ${GITHUB_SHA}."

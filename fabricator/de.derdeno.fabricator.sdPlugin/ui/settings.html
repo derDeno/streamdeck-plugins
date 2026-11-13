@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fabricator settings</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      font: 13px "DM Sans", "Inter", system-ui, sans-serif;
+      color: #f1f1f1;
+      background: #0f0f0f;
+      --surface: #1a1a1a;
+      --border: #555;
+      --accent: #f97316;
+    }
+    body { margin: 16px; }
+    fieldset { border: 0; margin: 0; padding: 0; min-width: 0; }
+    details { border: 1px solid #252525; border-radius: 8px; background: #141414; }
+    summary { padding: 10px 12px; font-weight: 700; cursor: pointer; }
+    summary::marker { color: var(--accent); }
+    .server-fields { border-top: 1px solid #252525; padding: 0 12px 12px; }
+    #command-field { margin-bottom: 12px; }
+    #command-field label { margin-top: 0; }
+    label { display: block; font-weight: 600; margin: 12px 0 6px; }
+    input, select, button { font: inherit; border: 1px solid var(--border); border-radius: 6px; background: var(--surface); color: inherit; }
+    input, select { box-sizing: border-box; width: 100%; padding: 7px 8px; }
+    :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+    button { margin-top: 12px; padding: 7px 12px; cursor: pointer; }
+    button[type="submit"] { background: var(--accent); border-color: var(--accent); color: #0f0f0f; font-weight: 700; }
+    button:disabled { opacity: .6; }
+    p { margin: 8px 0 0; line-height: 1.45; color: #d4d4d4; }
+    #feedback.error { color: #ef4444; }
+    [hidden] { display: none; }
+  </style>
+  <script defer src="settings.js"></script>
+</head>
+<body>
+  <form id="settings">
+    <fieldset id="fields" disabled>
+      <div id="command-field" hidden>
+        <label for="command">Console command for this key</label>
+        <input id="command" type="text" placeholder="say Server restart in 5 minutes" autocomplete="off" spellcheck="false">
+      </div>
+      <details id="server-settings">
+        <summary>Fabricator Server Settings</summary>
+        <div class="server-fields">
+          <label for="address">Panel address</label>
+          <input id="address" type="text" required placeholder="http://192.168.1.10:5000" autocomplete="off" spellcheck="false">
+          <label for="password">Operator password</label>
+          <input id="password" type="password" autocomplete="off">
+          <button id="load" type="button">Load servers</button>
+          <div id="server-picker" hidden>
+            <label for="servers">Discovered servers</label>
+            <select id="servers"></select>
+          </div>
+          <label for="server-id">Server ID</label>
+          <input id="server-id" type="text" required pattern="[A-Za-z0-9_\-]+" placeholder="srv_1234abcd" autocomplete="off" spellcheck="false">
+        </div>
+      </details>
+      <button type="submit">Save</button>
+    </fieldset>
+    <p id="feedback" role="status" aria-live="polite"></p>
+  </form>
+</body>
+</html>
