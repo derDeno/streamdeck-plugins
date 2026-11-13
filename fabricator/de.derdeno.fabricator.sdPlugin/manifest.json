@@ -4,7 +4,7 @@
   "Name": "Fabricator",
   "Author": "derDeno",
   "Description": "Monitor and control Minecraft servers managed by Fabricator.",
-  "Version": "1.0.2.0",
+  "Version": "1.0.3.0",
   "SDKVersion": 3,
   "Software": {
     "MinimumVersion": "7.1"
