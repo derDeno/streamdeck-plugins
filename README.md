@@ -8,6 +8,7 @@ download its installer, and add its actions to your keys.
 | Plugin | What it does | Platform |
 | --- | --- | --- |
 | [PandaDesk](pandadesk/README.md) | Control your PandaDesk height-adjustable desk: move up or down, switch between sitting and standing, recall saved positions, and see the current height. | Windows |
+| [Fabricator](fabricator/README.md) | Monitor Minecraft server metrics, control the server, open its admin panel, and send console commands. | Windows, macOS |
 
 Each plugin's guide includes its requirements, setup instructions, and available
 actions.

@@ -1,0 +1,230 @@
+{
+  "$schema": "https://schemas.elgato.com/streamdeck/plugins/manifest.json",
+  "UUID": "de.derdeno.fabricator",
+  "Name": "Fabricator",
+  "Author": "derDeno",
+  "Description": "Monitor and control Minecraft servers managed by Fabricator.",
+  "Version": "1.0.2.0",
+  "SDKVersion": 3,
+  "Software": {
+    "MinimumVersion": "7.1"
+  },
+  "OS": [
+    {
+      "Platform": "windows",
+      "MinimumVersion": "10"
+    },
+    {
+      "Platform": "mac",
+      "MinimumVersion": "13"
+    }
+  ],
+  "Nodejs": {
+    "Version": "24"
+  },
+  "CodePath": "bin/plugin.js",
+  "Icon": "imgs/plugin",
+  "Category": "Fabricator",
+  "CategoryIcon": "imgs/category",
+  "PropertyInspectorPath": "ui/settings.html",
+  "Actions": [
+    {
+      "UUID": "de.derdeno.fabricator.players",
+      "Name": "Players Online",
+      "Tooltip": "Show the number of players online.",
+      "Icon": "imgs/players-list",
+      "Controllers": [
+        "Keypad"
+      ],
+      "SupportedInMultiActions": false,
+      "States": [
+        {
+          "Image": "imgs/players",
+          "Title": "Players",
+          "TitleAlignment": "bottom",
+          "FontSize": 11
+        }
+      ]
+    },
+    {
+      "UUID": "de.derdeno.fabricator.uptime",
+      "Name": "Uptime",
+      "Tooltip": "Show how long the server has been running.",
+      "Icon": "imgs/uptime-list",
+      "Controllers": [
+        "Keypad"
+      ],
+      "SupportedInMultiActions": false,
+      "States": [
+        {
+          "Image": "imgs/uptime",
+          "Title": "Uptime",
+          "TitleAlignment": "bottom",
+          "FontSize": 11
+        }
+      ]
+    },
+    {
+      "UUID": "de.derdeno.fabricator.tps",
+      "Name": "TPS",
+      "Tooltip": "Show the server tick rate.",
+      "Icon": "imgs/tps-list",
+      "Controllers": [
+        "Keypad"
+      ],
+      "SupportedInMultiActions": false,
+      "States": [
+        {
+          "Image": "imgs/tps",
+          "Title": "TPS",
+          "TitleAlignment": "bottom",
+          "FontSize": 11
+        }
+      ]
+    },
+    {
+      "UUID": "de.derdeno.fabricator.state",
+      "Name": "Server State",
+      "Tooltip": "Show the current server state.",
+      "Icon": "imgs/state-list",
+      "Controllers": [
+        "Keypad"
+      ],
+      "SupportedInMultiActions": false,
+      "States": [
+        {
+          "Image": "imgs/state",
+          "Title": "State",
+          "TitleAlignment": "bottom",
+          "FontSize": 11
+        }
+      ]
+    },
+    {
+      "UUID": "de.derdeno.fabricator.cpu",
+      "Name": "CPU Usage",
+      "Tooltip": "Show CPU usage of the Minecraft process.",
+      "Icon": "imgs/cpu-list",
+      "Controllers": [
+        "Keypad"
+      ],
+      "SupportedInMultiActions": false,
+      "States": [
+        {
+          "Image": "imgs/cpu",
+          "Title": "CPU",
+          "TitleAlignment": "bottom",
+          "FontSize": 11
+        }
+      ]
+    },
+    {
+      "UUID": "de.derdeno.fabricator.heap",
+      "Name": "Heap Usage",
+      "Tooltip": "Show Java heap memory in use.",
+      "Icon": "imgs/heap-list",
+      "Controllers": [
+        "Keypad"
+      ],
+      "SupportedInMultiActions": false,
+      "States": [
+        {
+          "Image": "imgs/heap",
+          "Title": "Heap",
+          "TitleAlignment": "bottom",
+          "FontSize": 11
+        }
+      ]
+    },
+    {
+      "UUID": "de.derdeno.fabricator.start",
+      "Name": "Start Server",
+      "Tooltip": "Start the selected Minecraft server.",
+      "Icon": "imgs/start-list",
+      "Controllers": [
+        "Keypad"
+      ],
+      "SupportedInMultiActions": false,
+      "States": [
+        {
+          "Image": "imgs/start",
+          "Title": "Start",
+          "TitleAlignment": "bottom",
+          "FontSize": 11
+        }
+      ]
+    },
+    {
+      "UUID": "de.derdeno.fabricator.stop",
+      "Name": "Stop Server",
+      "Tooltip": "Stop the selected Minecraft server.",
+      "Icon": "imgs/stop-list",
+      "Controllers": [
+        "Keypad"
+      ],
+      "SupportedInMultiActions": false,
+      "States": [
+        {
+          "Image": "imgs/stop",
+          "Title": "Stop",
+          "TitleAlignment": "bottom",
+          "FontSize": 11
+        }
+      ]
+    },
+    {
+      "UUID": "de.derdeno.fabricator.restart",
+      "Name": "Restart Server",
+      "Tooltip": "Restart the selected Minecraft server.",
+      "Icon": "imgs/restart-list",
+      "Controllers": [
+        "Keypad"
+      ],
+      "SupportedInMultiActions": false,
+      "States": [
+        {
+          "Image": "imgs/restart",
+          "Title": "Restart",
+          "TitleAlignment": "bottom",
+          "FontSize": 11
+        }
+      ]
+    },
+    {
+      "UUID": "de.derdeno.fabricator.admin",
+      "Name": "Open Admin Panel",
+      "Tooltip": "Open the selected server in Fabricator.",
+      "Icon": "imgs/admin-list",
+      "Controllers": [
+        "Keypad"
+      ],
+      "SupportedInMultiActions": false,
+      "States": [
+        {
+          "Image": "imgs/admin",
+          "Title": "Admin",
+          "TitleAlignment": "bottom",
+          "FontSize": 11
+        }
+      ]
+    },
+    {
+      "UUID": "de.derdeno.fabricator.console",
+      "Name": "Console Command",
+      "Tooltip": "Send the Minecraft console command saved on this key.",
+      "Icon": "imgs/console-list",
+      "Controllers": [
+        "Keypad"
+      ],
+      "SupportedInMultiActions": false,
+      "States": [
+        {
+          "Image": "imgs/console",
+          "Title": "Console",
+          "TitleAlignment": "bottom",
+          "FontSize": 11
+        }
+      ]
+    }
+  ]
+}
